@@ -10,7 +10,7 @@ if len(sys.argv) >= 2:
   @client.on(events.NewMessage("https://t.me/joinchat/HZLgHnK8TQAyZWQy"))
   async def new_message_event_handler(event):
     if event.message.buttons is not None:
-      await event.message.click(0, 1)
+      await event.message.click(0, 0)
 
   client.start()
   client.run_until_disconnected()
