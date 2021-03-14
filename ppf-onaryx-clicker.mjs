@@ -1,4 +1,4 @@
-const io = require('socket.io-client');
+import {io} from 'socket.io-client';
 
 if (process.env.TG_ID && process.env.PANTINI_TOKEN) {
   const client = io('wss://onaryx.ru', {
