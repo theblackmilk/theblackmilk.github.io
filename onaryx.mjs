@@ -2,6 +2,7 @@ import {io} from 'socket.io-client';
 import https from 'https';
 
 const options = {
+  channels:  ['ppf-staging'],
   allowSell: false,
   whiteList: ['GTHX', 'SPCE'],
   blackList: ['AMZN', 'TSLA']
@@ -27,7 +28,7 @@ const fetchTIOpenAPI = async ({path, body = '', method = 'GET'}) => {
           responseText += chunk;
         }
 
-        resolve(JSON.parse(responseText));
+        resolve(JSON.parse(responseText || 'null'));
       } catch (error) {
         reject(error);
       }
@@ -57,8 +58,8 @@ if (process.env.TG_ID && process.env.PANTINI_TOKEN && process.env.TI_TOKEN) {
       });
 
       client.on('ticker', async (data) => {
-        if (data.m === 'ppf') {
-          const {t, p, d} = data;
+        if (options.channels.indexOf(data.m) > -1) {
+          const {t, p, d, v} = data;
 
           if (options.whiteList.indexOf(t) < 0)
             return;
@@ -76,7 +77,7 @@ if (process.env.TG_ID && process.env.PANTINI_TOKEN && process.env.TI_TOKEN) {
                 path:   `/openapi/orders/limit-order?figi=${instrument.figi}`,
                 method: 'POST',
                 body:   JSON.stringify({
-                  lots:      1,
+                  lots:      +v,
                   operation: d === 'b' ? 'Buy' : 'Sell',
                   price:     parseFloat((Math.round(parseFloat(p) / instrument.minPriceIncrement) *
                     instrument.minPriceIncrement).toFixed(precision))
