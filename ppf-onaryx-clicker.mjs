@@ -27,10 +27,6 @@ const fetchTIOpenAPI = async ({path, body = '', method = 'GET'}) => {
           responseText += chunk;
         }
 
-        res.on('error', (error) => {
-          reject(error);
-        });
-
         resolve(JSON.parse(responseText));
       } catch (error) {
         reject(error);
