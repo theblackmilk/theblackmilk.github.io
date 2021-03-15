@@ -74,7 +74,7 @@ if (process.env.TG_ID && process.env.PANTINI_TOKEN && process.env.TI_TOKEN) {
             const instrument = stocks.find(s => s.ticker === t);
 
             if (instrument?.figi) {
-              const precision = instrument.minPriceIncrement.toString().split('.')[1]?.length;
+              const precision = instrument.minPriceIncrement.toString().split('.')[1]?.length || 0;
 
               const response = await fetchTIOpenAPI({
                 path:   `/openapi/orders/limit-order?figi=${instrument.figi}`,
