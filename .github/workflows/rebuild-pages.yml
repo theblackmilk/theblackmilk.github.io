@@ -1,7 +1,7 @@
 name: Rebuild GitHub Pages
 on: workflow_dispatch
 jobs:
-  Rebuild-GitHub-Pages:
+  rebuild-pages:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger GitHub Pages Rebuild
