@@ -1,0 +1,13 @@
+name: Rebuild GitHub Pages
+on: workflow_dispatch
+jobs:
+  rebuild-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger GitHub Pages Rebuild
+        run: |
+          curl --fail --request POST \
+            --url https://api.github.com/repos/${{ github.repository }}/pages/builds \
+            --header "Authorization: Bearer $USER_TOKEN"
+        env:
+          USER_TOKEN: ${{ secrets.USER_TOKEN }}
