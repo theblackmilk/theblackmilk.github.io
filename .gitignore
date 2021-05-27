@@ -104,7 +104,3 @@ dist
 
 # TernJS port file
 .tern-port
-/python/pantini.session
-/python/pantini.session-journal
-terminal/nginx-win/temp/
-terminal/nginx-win/logs/
