@@ -1,6 +1,6 @@
 {
-  "name":        "Pantini Terminal",
-  "short_name":  "Pantini Terminal",
+  "name":        "JPX Terminal",
+  "short_name":  "Trading Terminal by John Pantini",
   "icons":       [
     {
       "src":   "/icons/terminal/icon-512x512.png",
@@ -15,6 +15,6 @@
   ],
   "lang":        "ru-RU",
   "start_url":   "/",
-  "display":     "standalone",
+  "display":     "minimal-ui",
   "theme_color": "#2196f3"
 }
